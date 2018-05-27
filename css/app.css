@@ -21,6 +21,12 @@ body {
     font-family: 'Coda', cursive;
 }
 
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -29,8 +35,13 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Sawarabi Gothic', sans-serif;
     font-weight: 300;
+    margin-bottom: 0;
+}
+
+h2{
+    margin-top: 0;
 }
 
 /*
@@ -54,7 +65,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #C1BC77;
+    background: #364477;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -67,7 +78,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #668EA8;
+    background: #8C1F40;
     cursor: default;
     font-size: 33px;
 }
@@ -75,7 +86,7 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #C1AEAE;
+    background: #900001;
     font-size: 33px;
 }
 
