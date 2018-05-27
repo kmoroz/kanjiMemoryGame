@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Kanji Matching</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="icon" href="kanji.png">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Kanji Matching</h1>
+        </header>
+
+        <section class="score-panel">
+        	<ul class="stars">
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star"></i></li>
+        	</ul>
+
+        	<span class="moves">3</span> Moves
+
+            <div class="restart">
+        		<i class="fas fa-redo"></i>
+        	</div>
+        </section>
+
+        <ul class="deck">
+            <li class="card">
+                <i class="fas fa-road"></i>
+            </li>
+            <li class="card">
+                <i class="moon">月</i>
+            </li>
+            <li class="card">
+                <i class="fas fa-snowflake snow"></i>
+            </li>
+            <li class="card">
+                <i class="fas fa-cloud"></i>
+            </li>
+            <li class="card">
+                <i class="home">家</i>
+            </li>
+            <li class="card">
+                <i class="snow">雪</i>
+            </li>
+            <li class="card">
+                <i class="alcohol">酒</i>
+            </li>
+            <li class="card">
+                <i class="eye">目</i>
+            </li>
+            <li class="card">
+                <i class="fas fa-road"></i>
+            </li>
+            <li class="card">
+                <i class="fas fa-image"></i>
+            </li>
+            <li class="card">
+                <i class="fas fa-glass-martini alcohol"></i>
+            </li>
+            <li class="card">
+                <i class="image">絵</i>
+            </li>
+            <li class="card">
+                <i class="fas fa-cloud"></i>
+            </li>
+            <li class="card">
+                <i class="fas fa-eye eye"></i>
+            </li>
+            <li class="card">
+                <i class="moon fas fa-moon "></i>
+            </li>
+            <li class="card">
+                <i class="fas fa-home home"></i>
+            </li>
+        </ul>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+
+        const MAXOPENCARDS = 2;
+        var numOfCardsOpen = 0;
+
+        $(document).on("click",".card", function () {
+            var clickedCard = $(this);
+            openClickedCard(clickedCard);
+            
+            if(numOfCardsOpen === MAXOPENCARDS){
+                setTimeout(resetUmatchedCards, 700);
+            }
+        });
+
+        function openClickedCard(clickedCard){
+            if (!clickedCard.hasClass("open") && numOfCardsOpen < MAXOPENCARDS){
+                clickedCard.addClass("open");
+                numOfCardsOpen ++;
+            }     
+        }
+
+        function resetUmatchedCards(){
+            $(".card").each(function(){
+                if (!$(this).hasClass("match")){
+                    $(this).removeClass("open");
+                }
+            });
+
+            numOfCardsOpen = 0;
+        }
+
+        function checkCardsForMatch(){
+            //iterate through all cards
+            // find cards that are open
+            // check if the first class in <i> element is the same in both
+            // if so, add match class to both.
+        }
+
+   
+    </script>
+</body>
+</html>
