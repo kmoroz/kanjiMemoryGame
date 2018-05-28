@@ -116,3 +116,7 @@ h2{
     float: right;
     cursor: pointer;
 }
+
+li{
+    list-style: none;
+}
