@@ -4,7 +4,9 @@
 
 
 const MAXOPENCARDS = 2;
-var starsLeft = 3
+var starsLeft = 5;
+var clickLock = false;
+
 const CARDLIST = 
 	[ 
 		{class:"road", character: "道", answer: "road"}, 
@@ -57,7 +59,7 @@ function shuffle(array) {
 
 function createStars(){
 	$('.stars').empty();
-    for (var i=0; i<3; i++){
+    for (var i=0; i<5; i++){
         $(".stars").append(`<li><i class="fa fa-star"></i></li>`);
     }
 }
@@ -79,11 +81,16 @@ function createCard(){
 			$('.deck').append("<li><i id=\"" + i + "\" class=\"card " + card.class + "\">" + card.character + "</i></li>");
 		}
 	});
+
+
 }
 
 $(".restart").click(function(){
+	starsLeft = 5;
+	moves.textContent = starsLeft;
     createStars();
     createCard();
+    $('.game-outcome').hide();
 });
 
 
@@ -94,15 +101,25 @@ var openCards = [];
 
 //open card function
 $(document).on("click",".card", function () {
-    clickedCard = $(this);
-    openClickedCard(clickedCard);
-    
-    if(openCards.length === MAXOPENCARDS){
-        setTimeout(resetUmatchedCards, 700);
+	//if clicklock is true, skip this entire function
+	if(!clickLock){
+			console.log("welcome!");
+	    clickedCard = $(this);
+	    openClickedCard(clickedCard);
 
-    }
+	    if(openCards.length === MAXOPENCARDS){
+	    	toggleClickLock();
+	        setTimeout(resetUnmatchedCards, 700);
+	    }
+	}else{
+		console.log("denied!");
+	}
 });
 
+
+function toggleClickLock(){
+	clickLock = !clickLock;
+}
 
 
 
@@ -125,31 +142,38 @@ function openClickedCard(clickedCard){
     	if (card1.answer === card2.answer){
 			document.getElementById(card1.id).classList.add("match");
 			document.getElementById(card2.id).classList.add("match");
+    	}else{
+    		starsLeft --;
+    		removeStars();
     	}
     }
     }     
 }
 
+const moves = document.querySelector(".moves");
+moves.textContent = starsLeft;
 
+function resetUnmatchedCards(){
 
-function resetUmatchedCards(){
     $(".card").each(function(){
         if (!$(this).hasClass("match")){
             $(this).removeClass("open");
-            
         }
     });
 
     openCards = [];
-    starsLeft --;
-    removeStars();
-    gameOver();
+    moves.textContent = starsLeft;
+    toggleClickLock();
+    checkIfGameIsOver();
 }
 
 
-function gameOver(){
+function checkIfGameIsOver(){
 	if (starsLeft === 0){
-		window.alert('game over!!!');
+		setTimeout(function(){
+         	$('.game-outcome').css("display", "flex");
+          	$('.game-outcome').addClass('animated fadeIn');
+      }, 550);
 	}
 }
 

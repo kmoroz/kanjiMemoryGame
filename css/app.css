@@ -117,6 +117,8 @@ h2{
     cursor: pointer;
 }
 
+
+
 li{
     list-style: none;
 }
@@ -124,3 +126,19 @@ li{
 .fa-star{
     color: #364477;
 }
+
+.game-outcome{
+    
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 660px;
+    height: 680px;
+    background: rgba(238, 228, 218, 0.73);
+    font-size: 3em;
+    font-weight: bold;
+    z-index: 9999;
+}
+
