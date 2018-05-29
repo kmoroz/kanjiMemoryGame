@@ -4,7 +4,7 @@
 
 
 const MAXOPENCARDS = 2;
-const NUMOFSTARS = 3
+var starsLeft = 3
 const CARDLIST = 
 	[ 
 		{class:"road", character: "道", answer: "road"}, 
@@ -54,6 +54,19 @@ function shuffle(array) {
 }
 
 
+
+function createStars(){
+	$('.stars').empty();
+    for (var i=0; i<3; i++){
+        $(".stars").append(`<li><i class="fa fa-star"></i></li>`);
+    }
+}
+
+function removeStars(){
+	const star = document.querySelector('.fa-star');
+	star.remove();
+}
+
 function createCard(){
 	$('.deck').empty();
 	shuffledCards = shuffle(CARDLIST);
@@ -69,12 +82,14 @@ function createCard(){
 }
 
 $(".restart").click(function(){
+    createStars();
     createCard();
 });
 
 
 
 var openCards = [];
+
 
 
 //open card function
@@ -84,8 +99,12 @@ $(document).on("click",".card", function () {
     
     if(openCards.length === MAXOPENCARDS){
         setTimeout(resetUmatchedCards, 700);
+
     }
 });
+
+
+
 
 function openClickedCard(clickedCard){
     if (!clickedCard.hasClass("open") && openCards.length < MAXOPENCARDS){
@@ -106,9 +125,6 @@ function openClickedCard(clickedCard){
     	if (card1.answer === card2.answer){
 			document.getElementById(card1.id).classList.add("match");
 			document.getElementById(card2.id).classList.add("match");
-
-
-		
     	}
     }
     }     
@@ -116,21 +132,26 @@ function openClickedCard(clickedCard){
 
 
 
-function checkCardListForMatches(){
-
-}
-
 function resetUmatchedCards(){
     $(".card").each(function(){
         if (!$(this).hasClass("match")){
             $(this).removeClass("open");
+            
         }
     });
 
     openCards = [];
+    starsLeft --;
+    removeStars();
+    gameOver();
 }
 
 
+function gameOver(){
+	if (starsLeft === 0){
+		window.alert('game over!!!');
+	}
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
