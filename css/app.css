@@ -17,7 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png'); /* Loyalty free background pattern */
+    
     font-family: 'Coda', cursive;
 }
 
@@ -35,13 +36,14 @@ body {
 }
 
 h1 {
-    font-family: 'Sawarabi Gothic', sans-serif;
-    font-weight: 300;
+    font-family: 'Kokoro', serif;
+    font-weight: bold;
     margin-bottom: 0;
 }
 
 h2{
     margin-top: 0;
+    font-weight: lighter;
 }
 
 /*
@@ -60,6 +62,8 @@ h2{
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+    font-family: "メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック",Verdana,Arial,Helvetica, sans-serif;
+    font-weight: 500;
 }
 
 .deck .card {
@@ -78,9 +82,12 @@ h2{
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #8C1F40;
+    background: white;
+    opacity: 0.9;
+    color: #900001;
     cursor: default;
     font-size: 33px;
+
 }
 
 
@@ -88,6 +95,7 @@ h2{
     cursor: default;
     background: #900001;
     font-size: 33px;
+    color: white;
 }
 
 /*
@@ -128,7 +136,6 @@ li{
 }
 
 .game-outcome{
-    
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -136,9 +143,25 @@ li{
     position: absolute;
     width: 660px;
     height: 680px;
-    background: rgba(238, 228, 218, 0.73);
-    font-size: 3em;
+    background: rgba(220, 239, 244, 0.54);
+    font-size: 4em;
     font-weight: bold;
     z-index: 9999;
+    color: #364477;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
 }
 
+#btn-try-again{
+    background: #30728D;
+    text-decoration: none;
+    display: inline-block;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 42px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: lighter;
+    border-radius: 3px;
+    padding: 0 20px;
+}

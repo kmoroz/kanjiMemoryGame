@@ -6,6 +6,9 @@
 const MAXOPENCARDS = 2;
 var starsLeft = 5;
 var clickLock = false;
+const moves = document.querySelector(".moves");
+moves.textContent = starsLeft;
+
 
 const CARDLIST = 
 	[ 
@@ -26,6 +29,7 @@ const CARDLIST =
 		{class: "fa-moon", type:"fa", answer: "moon"},
 		{class: "fa-home", type:"fa", answer: "home"}		
 	];
+
 
 
 var shuffledCards;
@@ -65,6 +69,8 @@ function createStars(){
 }
 
 function removeStars(){
+	starsLeft --;
+	moves.textContent = starsLeft;
 	const star = document.querySelector('.fa-star');
 	star.remove();
 }
@@ -93,6 +99,13 @@ $(".restart").click(function(){
     $('.game-outcome').hide();
 });
 
+$("#btn-try-again").click(function(){
+	starsLeft = 5;
+	moves.textContent = starsLeft;
+    createStars();
+    createCard();
+    $('.game-outcome').hide();
+});
 
 
 var openCards = [];
@@ -103,7 +116,7 @@ var openCards = [];
 $(document).on("click",".card", function () {
 	//if clicklock is true, skip this entire function
 	if(!clickLock){
-			console.log("welcome!");
+		
 	    clickedCard = $(this);
 	    openClickedCard(clickedCard);
 
@@ -111,8 +124,6 @@ $(document).on("click",".card", function () {
 	    	toggleClickLock();
 	        setTimeout(resetUnmatchedCards, 700);
 	    }
-	}else{
-		console.log("denied!");
 	}
 });
 
@@ -143,15 +154,12 @@ function openClickedCard(clickedCard){
 			document.getElementById(card1.id).classList.add("match");
 			document.getElementById(card2.id).classList.add("match");
     	}else{
-    		starsLeft --;
     		removeStars();
     	}
     }
     }     
 }
 
-const moves = document.querySelector(".moves");
-moves.textContent = starsLeft;
 
 function resetUnmatchedCards(){
 
@@ -173,7 +181,7 @@ function checkIfGameIsOver(){
 		setTimeout(function(){
          	$('.game-outcome').css("display", "flex");
           	$('.game-outcome').addClass('animated fadeIn');
-      }, 550);
+      }, 350);
 	}
 }
 
