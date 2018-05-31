@@ -11,10 +11,17 @@
 ## Instructions
 
 月 = moon
+
 道 = road
+
 雪 = snow
+
 目 = eye
+
 家 = house
+
 絵 = painting
+
 酒 = alcohol
+
 曇 = cloud
