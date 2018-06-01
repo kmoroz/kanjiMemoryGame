@@ -109,8 +109,11 @@ $(".btn-try-again").click(function(){
     createStars();
     createCard();
     $('.game-over').hide();
-    clearInterval(timer);
     $('.you-win').hide();
+    clearInterval(timer);
+    $(".minutes").html("");
+    $(".seconds").html("");
+    startTimer();
 });
 
 
