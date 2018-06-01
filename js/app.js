@@ -99,6 +99,7 @@ $(".restart").click(function(){
     $(".minutes").html("");
     $(".seconds").html("");
     startTimer();
+    openCards = [];
 });
 
 $(".btn-try-again").click(function(){
@@ -114,6 +115,7 @@ $(".btn-try-again").click(function(){
     $(".minutes").html("");
     $(".seconds").html("");
     startTimer();
+    openCards = [];
 });
 
 
