@@ -204,6 +204,7 @@ function checkIfGameIsOver(){
          	$('.game-over').css("display", "flex");
           	$('.game-over').addClass('animated fadeIn');
     		}, 350);
+		clearInterval(timer);
 	}
 }
 
@@ -217,8 +218,10 @@ function checkIfWon(){
           	$('.you-win').addClass('animated fadeIn');
           	$('.winner-comment').text('Time: ' + min.textContent + sec.textContent + ' | ' + 'Stars left: ' + starsLeft);
           	}, 350);
+		clearInterval(timer);
 	}
-	clearInterval(timer);
+	
+	
 }
 
 function startTimer() {
