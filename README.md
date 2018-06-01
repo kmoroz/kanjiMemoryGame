@@ -6,6 +6,7 @@
 * [Instructions](#instructions)
 
 ## Demo
+[Play Here](https://kmoroz.github.io/kanjiMemoryGame/)
 ![demo](https://user-images.githubusercontent.com/21237634/40808477-20793b9e-651f-11e8-9dc1-61b282c2a5c9.gif)
 
 ## Instructions
