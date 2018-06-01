@@ -207,7 +207,7 @@ function checkIfGameIsOver(){
 
 
 function checkIfWon(){
-	if(numberOfMatches === 1){
+	if(numberOfMatches === 8){
 		setTimeout(function(){
 			const sec = document.querySelector('.seconds');
 			const min = document.querySelector('.minutes');
