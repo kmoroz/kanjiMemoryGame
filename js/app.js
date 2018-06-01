@@ -7,7 +7,11 @@ const MAXOPENCARDS = 2;
 var starsLeft = 5;
 var clickLock = false;
 const moves = document.querySelector(".moves");
-moves.textContent = starsLeft;
+var movesDone = 0;
+moves.textContent = movesDone + ' Moves';
+var numberOfMatches = 0;
+let timer;
+var openCards = [];
 
 
 const CARDLIST = 
@@ -70,7 +74,8 @@ function createStars(){
 
 function removeStars(){
 	starsLeft --;
-	moves.textContent = starsLeft;
+	movesDone ++;
+	moves.textContent = movesDone + ' Moves';
 	const star = document.querySelector('.fa-star');
 	star.remove();
 }
@@ -93,22 +98,33 @@ function createCard(){
 
 $(".restart").click(function(){
 	starsLeft = 5;
-	moves.textContent = starsLeft;
+	movesDone = 0;
+	numberOfMatches = 0;
+	moves.textContent = movesDone + ' Moves';
     createStars();
     createCard();
-    $('.game-outcome').hide();
+    $('.game-over').hide();
+    $('.you-win').hide();
+    clearInterval(timer);
+    $(".minutes").html("");
+    $(".seconds").html("");
+    startTimer();
 });
 
-$("#btn-try-again").click(function(){
+$(".btn-try-again").click(function(){
 	starsLeft = 5;
-	moves.textContent = starsLeft;
+	movesDone = 0;
+	numberOfMatches = 0;
+	moves.textContent = movesDone + ' Moves';
     createStars();
     createCard();
-    $('.game-outcome').hide();
+    $('.game-over').hide();
+    clearInterval(timer);
+    $('.you-win').hide();
 });
 
 
-var openCards = [];
+
 
 
 
@@ -122,7 +138,7 @@ $(document).on("click",".card", function () {
 
 	    if(openCards.length === MAXOPENCARDS){
 	    	toggleClickLock();
-	        setTimeout(resetUnmatchedCards, 700);
+	        setTimeout(resetUnmatchedCards, 1500);
 	    }
 	}
 });
@@ -132,13 +148,21 @@ function toggleClickLock(){
 	clickLock = !clickLock;
 }
 
+function animateCardOpening(card){
+	card.css('transform', 'rotateY(-360deg)');
+	setTimeout(function(){card.addClass("open");}, 100);
+}
+
+function animateCardClosing(card){
+	card.css('transform', 'rotateY(0deg)');
+	setTimeout(function(){card.removeClass("open");}, 100);
+}
 
 
 function openClickedCard(clickedCard){
     if (!clickedCard.hasClass("open") && openCards.length < MAXOPENCARDS){
 
-    	// open up card
-        clickedCard.addClass("open");
+    	animateCardOpening(clickedCard);
 
         // add answer to answerlist
         var cardIndex = clickedCard.attr("id");
@@ -151,8 +175,11 @@ function openClickedCard(clickedCard){
 		card2 = openCards[1];
 
     	if (card1.answer === card2.answer){
+    		numberOfMatches ++;
+    		movesDone ++;
 			document.getElementById(card1.id).classList.add("match");
 			document.getElementById(card2.id).classList.add("match");
+			checkIfWon();
     	}else{
     		removeStars();
     	}
@@ -164,27 +191,60 @@ function openClickedCard(clickedCard){
 function resetUnmatchedCards(){
 
     $(".card").each(function(){
-        if (!$(this).hasClass("match")){
-            $(this).removeClass("open");
+
+        if (!$(this).hasClass("match") && $(this).hasClass("open") ){
+        	console.log("closing!");
+            animateCardClosing($(this));
         }
     });
 
     openCards = [];
-    moves.textContent = starsLeft;
+    moves.textContent = movesDone + ' Moves';
     toggleClickLock();
     checkIfGameIsOver();
+
 }
 
 
 function checkIfGameIsOver(){
 	if (starsLeft === 0){
 		setTimeout(function(){
-         	$('.game-outcome').css("display", "flex");
-          	$('.game-outcome').addClass('animated fadeIn');
-      }, 350);
+         	$('.game-over').css("display", "flex");
+          	$('.game-over').addClass('animated fadeIn');
+    		}, 350);
 	}
 }
 
+
+function checkIfWon(){
+	if(numberOfMatches === 1){
+		setTimeout(function(){
+			const sec = document.querySelector('.seconds');
+			const min = document.querySelector('.minutes');
+         	$('.you-win').css("display", "flex");
+          	$('.you-win').addClass('animated fadeIn');
+          	$('.winner-comment').text('Time: ' + min.textContent + sec.textContent + ' | ' + 'Stars left: ' + starsLeft);
+          	/*$('.winner-comment').text(min.textContent);
+          	$('.winner-comment').text(sec.textContent);*/
+          }, 350);
+	}
+	clearInterval(timer);
+}
+
+function startTimer() {
+  let clicks = 0;
+  $(".card").on("click", function() {
+    clicks += 1;
+    if (clicks === 1) {
+      var sec = 0;
+      function time ( val ) { return val > 9 ? val : "0" + val; }
+      timer = setInterval( function(){
+        $(".seconds").html(time(++sec % 60));
+        $(".minutes").html(time(parseInt(sec / 60, 10) + ':'));
+      }, 1000);
+    }
+  })
+ }
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)

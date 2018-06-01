@@ -24,21 +24,33 @@
             </header>
 
             <section class="score-panel">
-            	<ul class="stars">
-           
-            	</ul>
+            	<ul class="stars"></ul>
+            	<span class="moves"></span>
 
-            	<span class="moves"></span> Moves
+                <div class="timer">
+                    <div class="minutes"></div>
+                    <div class="seconds"></div>
+                </div>
 
                 <div class="restart">
             		<i class="fas fa-redo"></i>
             	</div>
+                
+                
             </section>
 
         <div>
-            <div class="game-outcome">
+            <div class="game-over">
                 <div>Game Over!</div>
-                <div><a id="btn-try-again">Try again</a></div>
+                <div><a class="btn-try-again">Try again</a></div>
+            </div>
+
+            <div class="you-win">
+                <div>You win!</div>
+                
+                <div class="winner-comment"></div>
+                <!-- <div class="winner-comment">Only 1,992 more to go!</div> -->
+                <div><a class="btn-try-again">Try again</a></div>
             </div>
             
             <ul class="deck"></ul>
@@ -53,7 +65,9 @@
         <script>
                 createStars();
                 createCard();
+                startTimer();
                 
+
                 
         </script>
 
