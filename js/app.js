@@ -12,6 +12,7 @@ moves.textContent = movesDone + ' Moves';
 var numberOfMatches = 0;
 let timer;
 var openCards = [];
+var shuffledCards;
 
 
 const CARDLIST = 
@@ -36,18 +37,6 @@ const CARDLIST =
 
 
 
-var shuffledCards;
-
-// var kanjiCardsList = ["road", "moon", "snow", "cloud", "home", "alcohol", "eye", "image"];
-var iconCardsList = ["", "", "", "", "", "", "", ""];
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -64,7 +53,7 @@ function shuffle(array) {
 }
 
 
-
+//generate stars
 function createStars(){
 	$('.stars').empty();
     for (var i=0; i<5; i++){
@@ -79,6 +68,7 @@ function removeStars(){
 	const star = document.querySelector('.fa-star');
 	star.remove();
 }
+
 
 function createCard(){
 	$('.deck').empty();
@@ -125,10 +115,7 @@ $(".btn-try-again").click(function(){
 
 
 
-
-
-
-//open card function
+//blocks more than two cards from opening at a time
 $(document).on("click",".card", function () {
 	//if clicklock is true, skip this entire function
 	if(!clickLock){
@@ -224,9 +211,7 @@ function checkIfWon(){
          	$('.you-win').css("display", "flex");
           	$('.you-win').addClass('animated fadeIn');
           	$('.winner-comment').text('Time: ' + min.textContent + sec.textContent + ' | ' + 'Stars left: ' + starsLeft);
-          	/*$('.winner-comment').text(min.textContent);
-          	$('.winner-comment').text(sec.textContent);*/
-          }, 350);
+          	}, 350);
 	}
 	clearInterval(timer);
 }
@@ -245,13 +230,4 @@ function startTimer() {
     }
   })
  }
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
