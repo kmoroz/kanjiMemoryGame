@@ -185,7 +185,7 @@ function resetUnmatchedCards(){
     $(".card").each(function(){
 
         if (!$(this).hasClass("match") && $(this).hasClass("open") ){
-        	console.log("closing!");
+        	
             animateCardClosing($(this));
         }
     });
@@ -210,7 +210,7 @@ function checkIfGameIsOver(){
 
 
 function checkIfWon(){
-	if(numberOfMatches === 8){
+	if(numberOfMatches === 2){
 		setTimeout(function(){
 			const sec = document.querySelector('.seconds');
 			const min = document.querySelector('.minutes');

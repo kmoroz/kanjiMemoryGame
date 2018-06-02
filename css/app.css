@@ -219,3 +219,179 @@ li{
     display: flex;
     flex-direction: row;
 }
+
+
+
+@media screen and (max-width: 699px) {
+    .deck{
+        background: grey;
+        width: 290px;
+        min-height: 290px;
+        padding: 15px;
+    }
+
+    .deck .card{
+        width: 57px;
+        height: 57px;
+    }
+
+    .deck .card.open{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .you-win{
+        width: 290px;
+        height: 290px;
+        font-size: 3em;
+    }
+
+    .winner-comment{
+        font-size: 15px;
+    }
+
+    .game-over{
+        width: 290px;
+        height: 290px;
+        font-size: 2.5em;
+    }
+
+    .score-panel{
+        width: 260px;
+    }
+
+    .score-panel .stars{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .score-panel .stars li{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .fa-star{
+        font-size: 0.7em;
+    }
+
+    .moves{
+        font-size: 0.8em;
+        display: flex;
+        align-items: center ;
+        justify-content: flex-start;
+    }
+    
+
+
+    .timer{
+        font-size: 0.8em;
+        display: flex;
+        align-items: center ;
+        justify-content: flex-start;
+    }
+
+    .fa-redo{
+        font-size: 0.8em;
+    }
+
+    .restart{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .btn-try-again{
+        
+        height: 35px;
+        line-height: 37px;
+        font-size: 16px;
+        font-weight: lighter;
+        border-radius: 3px;
+        padding: 0 20px;
+    }
+}
+
+
+
+@media screen and (min-width: 700px) and (max-width: 1099px) {
+    .deck{
+        background: gold;
+        width: 570px;
+        min-height: 570px;
+        padding: 25px;
+    }
+
+    .deck .card{
+        width: 110px;
+        height: 110px;
+    }
+
+    .you-win{
+        width: 570px;
+        height: 570px;
+    }
+
+    .game-over{
+        width: 570px;
+        height: 570px;
+    }
+
+    .score-panel{
+        width: 460px;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1440px) {
+    .deck{
+        background: red;
+        width: 570px;
+        min-height: 570px;
+    }
+
+    .deck .card{
+        width: 110px;
+        height: 110px;
+    }
+
+    .you-win{
+        width: 570px;
+        height: 570px;
+    }
+
+    .game-over{
+        width: 570px;
+        height: 570px;
+    }
+
+    .score-panel{
+        width: 460px;
+    }
+}
+
+
+@media screen and (min-width: 1440px) and (max-width: 1670px) {
+    .deck{
+        background: pink;
+        width: 600px;
+        min-height: 600px;
+    }
+
+    .deck .card{
+        width: 110px;
+        height: 110px;
+    }
+
+    .you-win{
+        width: 600px;
+        height: 600px;
+    }
+
+    .game-over{
+        width: 600px;
+        height: 600px;
+    }
+
+  
+}
